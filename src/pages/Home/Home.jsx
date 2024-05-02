@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userData } from "../../app/slices/userslice";
+import { userData } from "../../app/slices/userSlice";
 
 export const Home = () => {
   const rdxUser = useSelector(userData);

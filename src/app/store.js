@@ -5,7 +5,7 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import { thunk } from "redux-thunk";
 
 import storage from "redux-persist/lib/storage";
-import { userSlice } from "./slices/userslice";
+import userSlice from "./slices/userSlice";
 
 const reducers = combineReducers({
   user: userSlice,
