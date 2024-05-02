@@ -5,10 +5,11 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import { thunk } from "redux-thunk";
 
 import storage from "redux-persist/lib/storage";
-import userSlice from "./slices/userSlice";
-import detailSlice from "./slices/detailSlice";
+import { userSlice } from "./slices/userslice";
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  user: userSlice,
+});
 
 const persistConfig = {
   key: "root",
