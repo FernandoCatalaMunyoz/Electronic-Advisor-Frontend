@@ -32,6 +32,7 @@ export const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const loginMe = async () => {
     try {
       const fetched = await LoginUser(user);
@@ -44,9 +45,7 @@ export const Login = () => {
           user: decoded,
         };
         dispatch(login({ credentials: passport }));
-        setTimeout(() => {
-          navigate("/");
-        }, 1200);
+        navigate("/");
       }
     } catch (error) {}
   };
