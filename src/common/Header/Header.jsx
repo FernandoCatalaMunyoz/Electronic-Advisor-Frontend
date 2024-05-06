@@ -1,7 +1,6 @@
-import { userData } from "../../app/slices/userSlice";
+import { userData, logout } from "../../app/slices/userSlice";
 import { CLink } from "../CLink/CLink";
 import "./Header.css";
-
 import { useSelector, useDispatch } from "react-redux";
 
 export const Header = () => {
