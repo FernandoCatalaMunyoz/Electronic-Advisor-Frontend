@@ -12,26 +12,26 @@ export const Header = () => {
     <div className="header-design">
       <div className="title"></div>
       <div className="navigate">
-        <CLink path={"/"} title={"Home"} />
+        <CLink path={"/"} title={"HOME"} />
         {rdxUser?.credentials?.token ? (
           <div className="navigator-design">
-            <CLink path="/profile" title="Mi Perfil" />
+            <CLink path="/profile" title="MI PERFIL" />
             {rdxUser.credentials.user.roleName === "super_admin" ? (
               <div>
-                <CLink path={"/admin"} title={"Admin"} />
+                <CLink path={"/admin"} title={"ADMIN"} />
               </div>
             ) : null}
             <div
               className="out-design"
               onClick={() => dispatch(logout({ credentials: "" }))}
             >
-              <CLink path={"/"} title={"Logout"} />
+              <CLink path={"/"} title={"LOGOUT"} />
             </div>
           </div>
         ) : (
           <div className="navigator-design">
-            <CLink path="/login" title="Login" />
-            <CLink path="/register" title="Register" />
+            <CLink path="/login" title="LOGIN" />
+            <CLink path="/register" title="REGISTER" />
           </div>
         )}
       </div>

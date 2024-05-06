@@ -1,5 +1,5 @@
 .clink-design {
-  color: black;
+  color: rgb(242, 223, 53);
   font-weight: bold;
 
   margin: 1em;
@@ -8,6 +8,6 @@
 }
 .clink-design:hover {
   transition: 0.3s;
-  color: yellow;
+  color: rgb(226, 226, 149);
   cursor: pointer;
 }

@@ -1,0 +1,15 @@
+.homeDesign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-image: url("../../../img/aleksandr-popov-R25Q-pAUeY8-unsplash.jpg"); */
+  background-size: cover;
+}
+.eventCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

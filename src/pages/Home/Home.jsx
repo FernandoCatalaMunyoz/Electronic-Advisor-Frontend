@@ -1,3 +1,5 @@
+import "./Home.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/slices/userSlice";
@@ -45,7 +47,9 @@ export const Home = () => {
               );
             })}
           </div>
-        ) : null}
+        ) : (
+          <div>No hay eventos</div>
+        )}
       </div>
     </>
   );

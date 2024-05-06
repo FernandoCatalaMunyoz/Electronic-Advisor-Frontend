@@ -1,13 +1,13 @@
 .header-design {
   height: 10vh;
-  width: 99vw;
+  width: 100 vw;
 
-  background-color: transparent;
+  background-color: blue;
 
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  color: black;
+  color: rgb(242, 223, 53);
 }
 
 .navigator-design {
@@ -15,7 +15,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: rgb(242, 223, 53);
 }
 
 .out-design {
@@ -29,7 +29,7 @@
 
 .out-design:hover {
   transition: 0.3s;
-  color: black;
+  color: rgb(242, 223, 53);
   cursor: pointer;
 }
 .navigate {
@@ -37,14 +37,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: rgb(242, 223, 53);
 }
 
 .title {
   font-size: x-large;
 
   margin: 1em;
-  color: black;
+  color: rgb(242, 223, 53);
   display: flex;
   align-items: center;
   justify-content: center;
