@@ -25,6 +25,7 @@ export const Profile = () => {
     email: "",
     password: "",
   });
+
   const [userError, setUserError] = useState({
     firstNameError: "",
     lastNameError: "",
@@ -79,6 +80,12 @@ export const Profile = () => {
       setUser(userDataToupdate);
       setLoadedData(false);
       setWrite("disabled");
+      setUserError({
+        firstNameError: "",
+        lastNameError: "",
+        countryError: "",
+        emailError: "",
+      });
     } catch (error) {
       return error;
     }
