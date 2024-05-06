@@ -15,7 +15,7 @@ export const Profile = () => {
   const rdxUser = useSelector(userData);
 
   const [tokenStorage, setTokenStorage] = useState(rdxUser?.credentials?.token);
-  console.log(rdxUser.credentials.token, "tokenStorage");
+
   const [loadedData, setLoadedData] = useState(false);
   const [write, setWrite] = useState("disabled");
   const [user, setUser] = useState({
@@ -75,7 +75,6 @@ export const Profile = () => {
         rdxUser?.credentials?.token,
         user
       );
-      console.log(userDataToupdate, "userDataToupdate");
 
       setUser(userDataToupdate);
       setLoadedData(false);
