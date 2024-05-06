@@ -1,10 +1,10 @@
 .cButtonDesign {
   height: 3em;
-  width: 18em;
+  width: 15em;
 
-  border-radius: 0.5em;
+  border-radius: 0.1em;
 
-  background-color: red;
+  background-color: rgb(242, 223, 53);
   color: white;
   font-weight: bold;
 
@@ -17,7 +17,7 @@
 .cButtonDesign:hover {
   cursor: pointer;
   transition: 0.2s;
-  background-color: darkred;
+  background-color: rgb(165, 153, 38);
 }
 
 .cButtonGreen {

@@ -6,6 +6,7 @@ import { login, userData } from "../../app/slices/userSlice";
 import { LoginUser } from "../../services/apicalls";
 import { decodeToken } from "react-jwt";
 import { CInput } from "../../common/CInput/Cinput";
+import { CButton } from "../../common/CButton/CButton";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ export const Login = () => {
   };
   return (
     <div className="loginDesign">
-      <div>Inicio de sesión</div>
+      <div>INICIO DE SESIÓN</div>
       <CInput
         type={"email"}
         name={"email"}
@@ -68,7 +69,11 @@ export const Login = () => {
         value={user.password || ""}
         onChangeFunction={inputHandler}
       />
-      <button onClick={loginMe}>Login</button>
+      <CButton
+        className={"cButtonDesign"}
+        functionEmit={() => loginMe()}
+        title={"Login"}
+      />
     </div>
   );
 };
