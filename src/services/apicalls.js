@@ -91,3 +91,23 @@ export const UpdateProfile = async (token, data) => {
     return error;
   }
 };
+
+export const GetEvents = async () => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const response = await fetch(`${root}events`, options);
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

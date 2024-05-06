@@ -1,7 +1,7 @@
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { GetProfile, UpdateProfile } from "../../services/apicalls";
@@ -11,7 +11,7 @@ import { validame } from "../../utils/functions";
 
 export const Profile = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const rdxUser = useSelector(userData);
 
   const [tokenStorage, setTokenStorage] = useState(rdxUser?.credentials?.token);
@@ -97,7 +97,7 @@ export const Profile = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <h1>Profile</h1>
+          <h1>Mi perfil</h1>
           <div className="profileForm">
             <CInput
               type={"text"}

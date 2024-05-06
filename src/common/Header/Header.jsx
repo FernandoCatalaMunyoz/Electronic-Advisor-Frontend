@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 export const Header = () => {
   const rdxUser = useSelector(userData);
-  // console.log(rdxUser?.credentials?.user.firstName, "rdxUser");
+  console.log(rdxUser, "rdxUser");
   const dispatch = useDispatch();
 
   return (
@@ -15,7 +15,7 @@ export const Header = () => {
         <CLink path={"/"} title={"Home"} />
         {rdxUser?.credentials?.token ? (
           <div className="navigator-design">
-            <CLink path="/profile" title={rdxUser.credentials.user.firstName} />
+            <CLink path="/profile" title="Mi Perfil" />
             {rdxUser.credentials.user.roleName === "super_admin" ? (
               <div>
                 <CLink path={"/admin"} title={"Admin"} />
