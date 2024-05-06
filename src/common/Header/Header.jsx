@@ -16,11 +16,7 @@ export const Header = () => {
         <CLink path={"/"} title={"Home"} />
         {rdxUser?.credentials?.token ? (
           <div className="navigator-design">
-            <CLink
-              path="/profile"
-              title={rdxUser?.credentials?.user?.nickName}
-            />
-            <CLink path={"/myPosts"} title={"My Posts"} />
+            <CLink path="/profile" title="Profile" />
             {rdxUser.credentials.user.roleName === "super_admin" ? (
               <div>
                 <CLink path={"/admin"} title={"Admin"} />

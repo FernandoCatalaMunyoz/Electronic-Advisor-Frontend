@@ -16,7 +16,7 @@ export const Login = () => {
   if (token) {
     setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, 750);
   }
   const [user, setUser] = useState({
     email: "",
@@ -36,16 +36,18 @@ export const Login = () => {
   const loginMe = async () => {
     try {
       const fetched = await LoginUser(user);
-
+      console.log(fetched, "fetched");
       if (fetched.token) {
         const decoded = decodeToken(fetched.token);
-
+        console.log(decoded, "decoded");
         const passport = {
           token: fetched.token,
           user: decoded,
         };
         dispatch(login({ credentials: passport }));
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 750);
       }
     } catch (error) {}
   };
