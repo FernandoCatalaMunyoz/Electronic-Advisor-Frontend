@@ -3,7 +3,7 @@ import "./User.css";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
-import { DeleteUser, GetUsers } from "../../services/apicalls";
+import { DeleteEvent, DeleteUser, GetUsers } from "../../services/apicalls";
 
 export const Users = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const Users = () => {
 
   const deleteUser = async (id) => {
     try {
-      await DeleteUser(token, id);
+      await DeleteEvent(token, id);
       console.log(id, "id a borrar");
       setUsers([]);
     } catch (error) {

@@ -5,11 +5,12 @@ import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
-import { CreateEvent, GetEvents } from "../../services/apicalls";
+import { CreateEvent, DeleteEvent, GetEvents } from "../../services/apicalls";
 
 export const Events = () => {
   const navigate = useNavigate();
   const rdxUser = useSelector(userData);
+  const token = rdxUser?.credentials?.token;
 
   useEffect(() => {
     if (rdxUser?.credentials?.user?.roleName !== "super_admin") {
@@ -65,7 +66,15 @@ export const Events = () => {
       setEvent([]);
     } catch (error) {}
   };
-
+  const deleteEvent = async (id) => {
+    try {
+      await DeleteEvent(token, id);
+      console.log(id, "id a borrar");
+      setEvents([]);
+    } catch (error) {
+      console.log(error, "error");
+    }
+  };
   return (
     <div className="eventDesign">
       <div className="createEventDesign">
@@ -139,6 +148,12 @@ export const Events = () => {
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
               <div className="eventClub">{event.club.name}</div>
+              <div
+                className="deleteEvent"
+                onClick={() => deleteEvent(event.id)}
+              >
+                Borrar
+              </div>
             </div>
           ))}
         </div>
