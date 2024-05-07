@@ -5,11 +5,18 @@ import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
-import { CreateEvent } from "../../services/apicalls";
+import { CreateEvent, GetEvents } from "../../services/apicalls";
 
 export const Events = () => {
   const navigate = useNavigate();
   const rdxUser = useSelector(userData);
+
+  useEffect(() => {
+    if (rdxUser?.credentials?.user?.roleName !== "super_admin") {
+      navigate("/");
+    }
+  }, [rdxUser]);
+
   const [event, setEvent] = useState({
     name: "",
     month: "",
@@ -24,17 +31,25 @@ export const Events = () => {
     yearError: "",
     clubError: "",
   });
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    if (events.length === 0) {
+      const bringEvents = async () => {
+        const fetchEvents = await GetEvents();
+        console.log(fetchEvents.data, "fetchEvents");
+        setEvents(fetchEvents.data);
+      };
+      bringEvents();
+    }
+  }, [events]);
+
   const inputHandler = (e) => {
     setEvent((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
-  useEffect(() => {
-    if (rdxUser?.credentials?.user?.roleName !== "super_admin") {
-      navigate("/");
-    }
-  }, [rdxUser]);
 
   const createEvent = async () => {
     try {
@@ -44,11 +59,13 @@ export const Events = () => {
           throw new Error("Please, fill all the fields");
         }
       }
-      const fetched = await CreateEvent(event, token);
+      const fetched = await CreateEvent(events, token);
       console.log(fetched, "fetched");
+      const { message } = fetched.message;
       setEvent([]);
     } catch (error) {}
   };
+
   return (
     <div className="eventDesign">
       <div className="createEventDesign">
@@ -110,10 +127,22 @@ export const Events = () => {
               title={"Crear"}
               functionEmit={createEvent}
             />
+            <div>{}</div>
           </div>
         </div>
       </div>
-      <div className="listEventsDesign">List of Events</div>
+      <div className="listEventsDesign">
+        <div className="titleListEvents">List Events</div>
+        <div className="listEvents">
+          {events.map((event) => (
+            <div key={event.id} className="eventListDesign">
+              <div className="eventName">{event.name}</div>
+              <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
+              <div className="eventClub">{event.club.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
