@@ -26,8 +26,17 @@ export const Users = () => {
   }, [users]);
   return (
     <div className="usersDesign">
-      <div className="usersListDesign">Lista</div>
-      <div className="createUserDesign">Crear</div>
+      <div className="usersListDesign">
+        {users.map((user) => (
+          <div key={user.id} className="userDesign">
+            <div className="userFirstName">{user.firstName}</div>
+            <div className="userLastName">{user.lastName}</div>
+            <div className="userCountry">{user.country}</div>
+            <div className="userEmail">{user.email}</div>
+            <div className="deleteUser">Borrar</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
