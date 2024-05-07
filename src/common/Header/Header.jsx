@@ -17,8 +17,11 @@ export const Header = () => {
           <div className="navigator-design">
             <CLink path="/profile" title="MI PERFIL" />
             {rdxUser.credentials.user.roleName === "super_admin" ? (
-              <div>
-                <CLink path={"/superAdmin"} title={"ADMIN"} />
+              <div className="superAdminNav">
+                <CLink path={"/superAdmin/users"} title={"Users"} />
+                <CLink path={"/superAdmin/artists"} title={"Artists"} />
+                <CLink path={"/superAdmin/events"} title={"Events"} />
+                <CLink path={"/superAdmin/clubs"} title={"Clubs"} />
               </div>
             ) : null}
             <div

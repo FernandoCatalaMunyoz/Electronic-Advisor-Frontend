@@ -49,3 +49,9 @@
   align-items: center;
   justify-content: center;
 }
+.superAdminNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
