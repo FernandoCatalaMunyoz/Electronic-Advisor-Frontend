@@ -46,6 +46,7 @@ export const Events = () => {
       }
       const fetched = await CreateEvent(event, token);
       console.log(fetched, "fetched");
+      setEvent([]);
     } catch (error) {}
   };
   return (
