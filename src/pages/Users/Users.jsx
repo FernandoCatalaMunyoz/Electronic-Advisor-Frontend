@@ -29,7 +29,7 @@ export const Users = () => {
     try {
       await DeleteUser(token, id);
       console.log(id, "id a borrar");
-      setUsers(users.filter((users) => users.id !== id));
+      setUsers([]);
     } catch (error) {
       console.log(error, "error");
     }

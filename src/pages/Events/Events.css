@@ -1,0 +1,28 @@
+.eventDesign {
+  height: 90vh;
+  color: white;
+}
+.createEventDesign {
+  height: 40vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+.listEventsDesign {
+  height: 75vh;
+  background-color: brown;
+}
+.inputDesign {
+  width: 17%;
+  height: 5vh;
+  margin: 0.5em;
+  padding: 0.5em;
+  border: 0;
+  background-color: #f1f1f1;
+}
+.buttonCreateDiv {
+  display: flex;
+  justify-content: center;
+}

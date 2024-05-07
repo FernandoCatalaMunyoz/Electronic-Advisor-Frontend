@@ -154,3 +154,23 @@ export const DeleteUser = async (token, id) => {
     return error;
   }
 };
+export const CreateEvent = async (event, token) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(event),
+  };
+  try {
+    const response = await fetch(`${root}events`, options);
+    const data = await response.json();
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
