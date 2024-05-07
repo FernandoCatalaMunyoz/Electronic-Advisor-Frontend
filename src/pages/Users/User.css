@@ -68,4 +68,6 @@
   cursor: pointer;
   display: flex;
   justify-content: flex-start;
+  transition: 0.3s;
+  font-weight: bold;
 }

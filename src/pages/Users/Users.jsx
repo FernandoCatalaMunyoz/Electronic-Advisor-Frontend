@@ -3,12 +3,13 @@ import "./User.css";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
-import { GetUsers } from "../../services/apicalls";
+import { DeleteUser, GetUsers } from "../../services/apicalls";
 
 export const Users = () => {
   const navigate = useNavigate();
   const rdxUser = useSelector(userData);
   const [users, setUsers] = useState([]);
+  const token = rdxUser?.credentials?.token;
   useEffect(() => {
     if (rdxUser?.credentials?.user?.roleName !== "super_admin") {
       navigate("/");
@@ -18,12 +19,22 @@ export const Users = () => {
     if (users.length === 0) {
       const bringUsers = async () => {
         const fetchUsers = await GetUsers(rdxUser?.credentials?.token);
-        console.log(fetchUsers.data, "fetchUsers");
         setUsers(fetchUsers.data);
       };
       bringUsers();
     }
   }, [users]);
+
+  const deleteUser = async (id) => {
+    try {
+      await DeleteUser(token, id);
+      console.log(id, "id a borrar");
+      setUsers(users.filter((users) => users.id !== id));
+    } catch (error) {
+      console.log(error, "error");
+    }
+  };
+
   return (
     <div className="usersDesign">
       <div className="usersListDesign">
@@ -33,7 +44,9 @@ export const Users = () => {
             <div className="userLastName">{user.lastName}</div>
             <div className="userCountry">{user.country}</div>
             <div className="userEmail">{user.email}</div>
-            <div className="deleteUser">Borrar</div>
+            <div className="deleteUser" onClick={() => deleteUser(user.id)}>
+              Borrar
+            </div>
           </div>
         ))}
       </div>
