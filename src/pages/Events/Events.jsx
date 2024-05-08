@@ -11,7 +11,6 @@ import {
   GetEvents,
   UpdateEvent,
 } from "../../services/apicalls";
-import { EInput } from "../../common/EInput/EInput";
 
 export const Events = () => {
   const navigate = useNavigate();
@@ -47,19 +46,33 @@ export const Events = () => {
     clubError: "",
   });
   const [events, setEvents] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(10);
+  console.log(eventsPerPage, "eventsPerPage");
 
   useEffect(() => {
     if (events.length === 0) {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
-        const sortedEvents = fetchEvents.data.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        console.log(fetchEvents.data, "fetchEvents");
+        // const sortedEvents = fetchEvents.data.sort((a, b) =>
+        //   a.name.localeCompare(b.name)
+        // );
         setEvents(fetchEvents.data);
       };
       bringEvents();
     }
   }, [events]);
+
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   const inputHandler = (e) => {
     setEvent((prevState) => ({
@@ -239,7 +252,7 @@ export const Events = () => {
       <div className="listEventsDesign">
         <div className="titleListEvents">List Events</div>
         <div className="listEvents">
-          {events.map((event) => (
+          {currentEvents.map((event) => (
             <div key={event.id} className="eventListDesign">
               <div className="eventId">{event.id}</div>
               <div className="eventName">{event.name}</div>
@@ -259,6 +272,15 @@ export const Events = () => {
           ))}
         </div>
       </div>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} href="#" className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
