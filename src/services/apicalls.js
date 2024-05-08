@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-import { userData } from "../app/slices/userSlice";
-
 const root = "http://localhost:4000/api/";
 
 export const LoginUser = async (user) => {
@@ -198,9 +195,6 @@ export const DeleteEvent = async (token, id) => {
 };
 
 export const UpdateEvent = async (id, token, event) => {
-  console.log(id, "id a borrar");
-  console.log(token, "token");
-  console.log(event, "event");
   const options = {
     method: "PUT",
     headers: {
@@ -212,9 +206,9 @@ export const UpdateEvent = async (id, token, event) => {
 
   try {
     const response = await fetch(`${root}events/${id}`, options);
-    console.log(response, "response");
+
     const data = await response.json();
-    console.log(data, "data");
+
     if (!data.success) {
       throw new Error(data.message);
     }
