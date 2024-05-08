@@ -52,6 +52,9 @@ export const Events = () => {
     if (events.length === 0) {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
+        const sortedEvents = fetchEvents.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
         setEvents(fetchEvents.data);
       };
       bringEvents();
