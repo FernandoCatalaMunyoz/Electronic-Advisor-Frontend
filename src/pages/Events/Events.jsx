@@ -5,7 +5,13 @@ import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
-import { CreateEvent, DeleteEvent, GetEvents } from "../../services/apicalls";
+import {
+  CreateEvent,
+  DeleteEvent,
+  GetEvents,
+  UpdateEvent,
+} from "../../services/apicalls";
+import { EInput } from "../../common/EInput/EInput";
 
 export const Events = () => {
   const navigate = useNavigate();
@@ -17,7 +23,8 @@ export const Events = () => {
       navigate("/");
     }
   }, [rdxUser]);
-
+  const [write, setWrite] = useState("disabled");
+  const [loadedData, setLoadedData] = useState(false);
   const [event, setEvent] = useState({
     name: "",
     month: "",
@@ -25,6 +32,7 @@ export const Events = () => {
     year: "",
     club: "",
   });
+  const [editedEvent, setEditedEvent] = useState([]);
   const [eventError, setEventError] = useState({
     nameError: "",
     monthError: "",
@@ -52,6 +60,16 @@ export const Events = () => {
     }));
   };
 
+  const editInputHandler = (e, eventId) => {
+    const { name, value } = e.target;
+    setEditedEvent((prevState) => ({
+      ...prevState,
+      [eventId]: {
+        ...prevState[eventId],
+        [name]: value,
+      },
+    }));
+  };
   const createEvent = async () => {
     try {
       const token = rdxUser.credentials.token;
@@ -62,7 +80,7 @@ export const Events = () => {
       }
       const fetched = await CreateEvent(events, token);
       console.log(fetched, "fetched");
-      const { message } = fetched.message;
+
       setEvent([]);
     } catch (error) {}
   };
@@ -75,71 +93,90 @@ export const Events = () => {
       console.log(error, "error");
     }
   };
+
+  const editEvent = async (eventId) => {
+    const editEvent = editedEvent[eventId];
+    try {
+      const eventDataToUpdate = await UpdateEvent(
+        rdxUser?.credentials?.token,
+        editEvent
+      );
+      setEvent(eventDataToUpdate);
+      // setLoadedData(false);
+      setWrite("disabled");
+    } catch (error) {
+      return error;
+    }
+  };
   return (
     <div className="eventDesign">
-      <div className="createEventDesign">
-        <div className="titleCreateDesign">Crear Evento</div>
-        <div className="inputsCreateDesign">
-          <CInput
-            className={`inputDesign ${
-              eventError.nameError !== "" ? "inputDesignError" : ""
-            }`}
-            placeHolder={"Nombre del Evento"}
-            type={"text"}
-            name={"name"}
-            value={event.name || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-          />
-          <CInput
-            className={`inputDesign ${
-              eventError.nameError !== "" ? "inputDesignError" : ""
-            }`}
-            placeHolder={"Mes"}
-            type={"text"}
-            name={"month"}
-            value={event.month || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-          />
-          <CInput
-            className={`inputDesign ${
-              eventError.nameError !== "" ? "inputDesignError" : ""
-            }`}
-            placeHolder={"Día"}
-            type={"text"}
-            name={"day"}
-            value={event.day || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-          />
-          <CInput
-            className={`inputDesign ${
-              eventError.nameError !== "" ? "inputDesignError" : ""
-            }`}
-            placeHolder={"Año"}
-            type={"text"}
-            name={"year"}
-            value={event.year || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-          />
-          <CInput
-            className={`inputDesign ${
-              eventError.nameError !== "" ? "inputDesignError" : ""
-            }`}
-            placeHolder={"Club ID"}
-            type={"text"}
-            name={"club"}
-            value={event.club || ""}
-            onChangeFunction={(e) => inputHandler(e)}
-          />
-          <div className="buttonCreateDiv">
-            <CButton
-              className={"cButtonDesign"}
-              title={"Crear"}
-              functionEmit={createEvent}
+      <div className="createEditDesign">
+        <div className="createEventDesign">
+          <div className="titleCreateDesign">Crear Evento</div>
+          <div className="inputsCreateDesign">
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"Nombre del Evento"}
+              type={"text"}
+              name={"name"}
+              value={event.name || ""}
+              onChangeFunction={(e) => inputHandler(e)}
             />
-            <div>{}</div>
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"Mes"}
+              type={"text"}
+              name={"month"}
+              value={event.month || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+            />
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"Día"}
+              type={"text"}
+              name={"day"}
+              value={event.day || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+            />
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"Año"}
+              type={"text"}
+              name={"year"}
+              value={event.year || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+            />
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"Club ID"}
+              type={"text"}
+              name={"club"}
+              value={event.club || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+            />
+            <div className="buttonCreateDiv">
+              <CButton
+                className={"cButtonDesign"}
+                title={"Crear"}
+                functionEmit={createEvent}
+              />
+              <div>{}</div>
+            </div>
           </div>
         </div>
+        <div className="editEventDesign">Editar</div>
       </div>
+
       <div className="listEventsDesign">
         <div className="titleListEvents">List Events</div>
         <div className="listEvents">
@@ -148,6 +185,7 @@ export const Events = () => {
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
               <div className="eventClub">{event.club.name}</div>
+
               <div
                 className="deleteEvent"
                 onClick={() => deleteEvent(event.id)}

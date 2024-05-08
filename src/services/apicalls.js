@@ -195,3 +195,24 @@ export const DeleteEvent = async (token, id) => {
     return error;
   }
 };
+
+export const UpdateEvent = async (token, event) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(event),
+  };
+  try {
+    const response = await fetch(`${root}events/${event.id}`, options);
+    const data = await response.json();
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
