@@ -27,8 +27,9 @@ export const Users = () => {
 
   const deleteUser = async (id) => {
     try {
-      await DeleteEvent(token, id);
+      await DeleteUser(token, id);
       console.log(id, "id a borrar");
+      console.log(token, "token");
       setUsers([]);
     } catch (error) {
       console.log(error, "error");

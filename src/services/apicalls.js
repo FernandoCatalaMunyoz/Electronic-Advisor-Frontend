@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { userData } from "../app/slices/userSlice";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const root = "http://localhost:4000/api/";
 
@@ -144,8 +143,10 @@ export const DeleteUser = async (token, id) => {
       Authorization: `Bearer ${token}`,
     },
   };
+
   try {
     const response = await fetch(`${root}user/${id}`, options);
+    console.log(response, "response");
     const data = await response.json();
     if (!data.success) {
       throw new Error(data.message);
@@ -196,7 +197,7 @@ export const DeleteEvent = async (token, id) => {
   }
 };
 
-export const UpdateEvent = async (token, event) => {
+export const UpdateEvent = async (id, token, event) => {
   const options = {
     method: "PUT",
     headers: {
@@ -205,8 +206,9 @@ export const UpdateEvent = async (token, event) => {
     },
     body: JSON.stringify(event),
   };
+  console.log(id, "id a borrar");
   try {
-    const response = await fetch(`${root}events/${event.id}`, options);
+    const response = await fetch(`${root}events/${id}`, options);
     const data = await response.json();
     if (!data.success) {
       throw new Error(data.message);
