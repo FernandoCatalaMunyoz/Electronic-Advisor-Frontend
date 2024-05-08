@@ -24,13 +24,11 @@ export const Events = () => {
     }
   }, [rdxUser]);
   const [write, setWrite] = useState("disabled");
-  const [evetToUpdate, setEventToUpdate] = useState(null);
   const [event, setEvent] = useState({
     name: "",
     month: "",
     day: "",
     year: "",
-    club: "",
     id: "",
   });
   const [editedEvent, setEditedEvent] = useState({
@@ -38,7 +36,6 @@ export const Events = () => {
     month: "",
     day: "",
     year: "",
-    club: "",
     id: "",
   });
 
@@ -55,7 +52,6 @@ export const Events = () => {
     if (events.length === 0) {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
-        console.log(fetchEvents.data, "fetchEvents");
         setEvents(fetchEvents.data);
       };
       bringEvents();
@@ -82,7 +78,6 @@ export const Events = () => {
       month: event.month,
       day: event.day,
       year: event.year,
-      club: event.club.id,
     });
   };
 
@@ -95,7 +90,6 @@ export const Events = () => {
         }
       }
       const fetched = await CreateEvent(event, token);
-      console.log(fetched, "fetched");
 
       setEvent([]);
     } catch (error) {}
@@ -110,24 +104,20 @@ export const Events = () => {
   };
 
   const editEvent = async (id) => {
-    console.log(editedEvent.id, "editedEvent.id a actualizar");
     try {
       for (let element in editedEvent) {
-        if (event[element] === "") {
+        if (element === "") {
           throw new Error("Please, fill all the fields");
         }
       }
-
-      const eventDataToUpdate = await UpdateEvent(
-        id,
-        rdxUser?.credentials?.token,
-        editedEvent
-      );
-      setEditedEvent(eventDataToUpdate);
-      // setLoadedData(false);
+      startEdit(editedEvent);
+      await UpdateEvent(id, token, editedEvent);
+      startEdit("");
+      setEvents([]);
     } catch (error) {
       return error;
     }
+    editEvent();
   };
 
   return (
@@ -176,16 +166,7 @@ export const Events = () => {
               value={event.year || ""}
               onChangeFunction={(e) => inputHandler(e)}
             />
-            <CInput
-              className={`inputDesign ${
-                eventError.nameError !== "" ? "inputDesignError" : ""
-              }`}
-              placeHolder={"Club ID"}
-              type={"text"}
-              name={"club"}
-              value={event.club || ""}
-              onChangeFunction={(e) => inputHandler(e)}
-            />
+
             <div className="buttonCreate">
               <CButton
                 className={"cButtonDesign"}
@@ -239,22 +220,12 @@ export const Events = () => {
                 value={editedEvent.year || ""}
                 onChangeFunction={(e) => inputEditedHandler(e)}
               />
-              <CInput
-                className={`inputDesign ${
-                  eventError.nameError !== "" ? "inputDesignError" : ""
-                }`}
-                placeHolder={"Club ID"}
-                type={"text"}
-                name={"club"}
-                value={editedEvent.club || ""}
-                onChangeFunction={(e) => inputEditedHandler(e)}
-              />
 
               <div className="buttonCreate">
                 <CButton
                   className={"cButtonDesign"}
                   title={"Editar"}
-                  functionEmit={editEvent(editedEvent.id)}
+                  functionEmit={() => editEvent(editedEvent.id)}
                 />
               </div>
             </div>

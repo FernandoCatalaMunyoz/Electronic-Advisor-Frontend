@@ -12,5 +12,13 @@ export const Artists = () => {
       navigate("/");
     }
   }, [rdxUser]);
-  return <div>Artists</div>;
+  return (
+    <div className="artistDesign">
+      <div className="createArtistDiv">
+        <div className="titleCreateArtist">Crear Artista</div>
+        <div className="inputCreateArtist"></div>
+      </div>
+      <div className="listArtistsDiv"></div>
+    </div>
+  );
 };

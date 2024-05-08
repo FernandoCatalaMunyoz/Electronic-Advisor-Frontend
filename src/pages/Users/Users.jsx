@@ -3,7 +3,7 @@ import "./User.css";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
-import { DeleteEvent, DeleteUser, GetUsers } from "../../services/apicalls";
+import { DeleteUser, GetUsers } from "../../services/apicalls";
 
 export const Users = () => {
   const navigate = useNavigate();
