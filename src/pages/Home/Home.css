@@ -2,19 +2,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 90vh;
   width: 100vw;
-  /* background-image: url("../../../img/aleksandr-popov-R25Q-pAUeY8-unsplash.jpg"); */
-
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 }
 .eventCards {
+  height: 80vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.pagination {
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.page-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
