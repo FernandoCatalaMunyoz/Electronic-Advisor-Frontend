@@ -166,11 +166,13 @@ export const Events = () => {
               value={event.club || ""}
               onChangeFunction={(e) => inputHandler(e)}
             />
-            <CButton
-              className={"cButtonDesign"}
-              title={"Crear"}
-              functionEmit={createEvent}
-            />
+            <div className="buttonCreate">
+              <CButton
+                className={"cButtonDesign"}
+                title={"Crear"}
+                functionEmit={createEvent}
+              />
+            </div>
           </div>
         </div>
       </div>

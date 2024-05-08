@@ -22,18 +22,10 @@
   border: 0.1em solid #f1f1f1;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   justify-content: center;
 }
-.editEventDesign {
-  height: 30vh;
-  width: 50vw;
-  border: 0.1em solid #f1f1f1;
-  display: flex;
-  flex-direction: column;
 
-  justify-content: center;
-}
 .inputDesign {
   width: 17%;
   height: 3vh;
@@ -95,4 +87,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.buttonCreate {
+  display: flex;
+  justify-content: center;
 }
