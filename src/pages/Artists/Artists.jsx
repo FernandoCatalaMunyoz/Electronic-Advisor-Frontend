@@ -19,7 +19,10 @@ export const Artists = () => {
     if (artists.length === 0) {
       const bringArtists = async () => {
         const fetchArtists = await GetArtists();
-        setArtists(fetchArtists.data);
+        const sortedArtists = fetchArtists.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setArtists(sortedArtists);
       };
       bringArtists();
     }
