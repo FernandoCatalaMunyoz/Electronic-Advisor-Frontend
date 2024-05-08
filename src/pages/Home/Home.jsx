@@ -46,9 +46,9 @@ export const Home = () => {
       <div className="homeDesign">
         {events.length > 0 ? (
           <div className="eventCards">
-            {currentEvents.map((event) => (
+            {currentEvents.map((event, index) => (
               <div key={event.id} className="eventListDesign">
-                <div className="eventId">{event.id}</div>
+                <div className="eventId">{index + 1}</div>
                 <div className="eventName">{event.name}</div>
                 <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
                 <div className="eventClub">{event.club.name}</div>
