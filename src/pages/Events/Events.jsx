@@ -32,7 +32,15 @@ export const Events = () => {
     year: "",
     club: "",
   });
-  const [editedEvent, setEditedEvent] = useState([]);
+  const [editedEvent, setEditedEvent] = useState({
+    name: "",
+    month: "",
+    day: "",
+    year: "",
+    club: "",
+    id: "",
+  });
+
   const [eventError, setEventError] = useState({
     nameError: "",
     monthError: "",
@@ -60,25 +68,15 @@ export const Events = () => {
     }));
   };
 
-  const editInputHandler = (e, eventId) => {
-    const { name, value } = e.target;
-    setEditedEvent((prevState) => ({
-      ...prevState,
-      [eventId]: {
-        ...prevState[eventId],
-        [name]: value,
-      },
-    }));
-  };
   const createEvent = async () => {
     try {
-      const token = rdxUser.credentials.token;
-      for (let element in event) {
-        if (event[element] === "") {
-          throw new Error("Please, fill all the fields");
-        }
-      }
-      const fetched = await CreateEvent(events, token);
+      const token = rdxUser?.credentials?.token;
+      // for (let element in event) {
+      //   if (event[element] === "") {
+      //     throw new Error("Please, fill all the fields");
+      //   }
+      // }
+      const fetched = await CreateEvent(event, token);
       console.log(fetched, "fetched");
 
       setEvent([]);
@@ -94,12 +92,16 @@ export const Events = () => {
     }
   };
 
-  const editEvent = async (eventId) => {
-    const editEvent = editedEvent[eventId];
+  const editEvent = async () => {
     try {
+      for (let element in editedEvent) {
+        if (event[element] === "") {
+          throw new Error("Please, fill all the fields");
+        }
+      }
       const eventDataToUpdate = await UpdateEvent(
         rdxUser?.credentials?.token,
-        editEvent
+        eventId
       );
       setEvent(eventDataToUpdate);
       // setLoadedData(false);
@@ -164,17 +166,13 @@ export const Events = () => {
               value={event.club || ""}
               onChangeFunction={(e) => inputHandler(e)}
             />
-            <div className="buttonCreateDiv">
-              <CButton
-                className={"cButtonDesign"}
-                title={"Crear"}
-                functionEmit={createEvent}
-              />
-              <div>{}</div>
-            </div>
+            <CButton
+              className={"cButtonDesign"}
+              title={"Crear"}
+              functionEmit={createEvent}
+            />
           </div>
         </div>
-        <div className="editEventDesign">Editar</div>
       </div>
 
       <div className="listEventsDesign">
