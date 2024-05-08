@@ -15,6 +15,19 @@ export const Home = () => {
 
   const [events, setEvents] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(10);
+
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   useEffect(() => {
     const bringEvents = async () => {
       try {
@@ -33,24 +46,28 @@ export const Home = () => {
       <div className="homeDesign">
         {events.length > 0 ? (
           <div className="eventCards">
-            {events.map((event) => {
-              return (
-                <EventCard
-                  key={event.id}
-                  title={event.name}
-                  month={event.month}
-                  day={event.day}
-                  year={event.year}
-                  club={event.club.name}
-                  clickDetail={() => {}}
-                />
-              );
-            })}
+            {currentEvents.map((event) => (
+              <div key={event.id} className="eventListDesign">
+                <div className="eventId">{event.id}</div>
+                <div className="eventName">{event.name}</div>
+                <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
+                <div className="eventClub">{event.club.name}</div>
+              </div>
+            ))}
           </div>
         ) : (
           <div>No hay eventos</div>
         )}
       </div>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} href="#" className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
