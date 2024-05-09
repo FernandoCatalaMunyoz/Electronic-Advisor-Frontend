@@ -29,7 +29,7 @@ export const validame = (type, value) => {
     case "contraseña":
       const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,14}$/;
       if (!passwordRegex.test(value)) {
-        return "El password debe tener 8 caracteres, simbolo y mayúscula";
+        return "El password debe tener 8 caracteres y mayúscula";
       }
 
       return "";

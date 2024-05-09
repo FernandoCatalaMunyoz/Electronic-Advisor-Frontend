@@ -6,7 +6,10 @@ import { login, userData } from "../../app/slices/userSlice";
 import { LoginUser } from "../../services/apicalls";
 import { decodeToken } from "react-jwt";
 import { CInput } from "../../common/CInput/Cinput";
+import { validame } from "../../utils/functions";
 import { CButton } from "../../common/CButton/CButton";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ export const Login = () => {
   });
   const [userError, setUserError] = useState({
     emailError: "",
-    paswordError: "",
+    passwordError: "",
   });
   const inputHandler = (e) => {
     setUser((prevState) => ({
@@ -34,9 +37,23 @@ export const Login = () => {
     }));
   };
 
+  const checkError = (e) => {
+    const error = validame(e.target.name, e.target.value);
+
+    setUserError((prevState) => ({
+      ...prevState,
+      [e.target.name + "Error"]: error,
+    }));
+  };
+  useEffect(() => {
+    toast.dismiss();
+    userError.emailError && toast.warn(userError.emailError);
+    userError.passwordError && toast.warn(userError.passwordError);
+  }, [userError]);
   const loginMe = async () => {
     try {
       const fetched = await LoginUser(user);
+      toast.success("User logged in successfully");
       console.log(fetched, "fetched");
       if (fetched.token) {
         const decoded = decodeToken(fetched.token);
@@ -48,7 +65,7 @@ export const Login = () => {
         dispatch(login({ credentials: passport }));
         setTimeout(() => {
           navigate("/");
-        }, 750);
+        }, 1750);
       }
     } catch (error) {}
   };
@@ -62,6 +79,7 @@ export const Login = () => {
         placeHolder={"Email"}
         value={user.email || ""}
         onChangeFunction={inputHandler}
+        onBlurFunction={checkError}
       />
       <CInput
         className={"cInputDesign"}
@@ -70,11 +88,25 @@ export const Login = () => {
         placeHolder={"Contraseña"}
         value={user.password || ""}
         onChangeFunction={inputHandler}
+        onBlurFunction={checkError}
       />
       <CButton
         className={"cButtonDesign"}
         functionEmit={() => loginMe()}
         title={"Login"}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
       />
     </div>
   );
