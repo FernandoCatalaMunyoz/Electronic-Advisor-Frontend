@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { DeleteUser, GetUsers } from "../../services/apicalls";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Users = () => {
   const navigate = useNavigate();
@@ -40,8 +42,7 @@ export const Users = () => {
   const deleteUser = async (id) => {
     try {
       await DeleteUser(token, id);
-      console.log(id, "id a borrar");
-      console.log(token, "token");
+      toast.success("User deleted successfully");
       setUsers([]);
     } catch (error) {
       console.log(error, "error");
@@ -72,6 +73,19 @@ export const Users = () => {
           </li>
         ))}
       </ul>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </div>
   );
 };
