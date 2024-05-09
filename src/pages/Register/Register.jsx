@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
-import { LoginUser, RegisterUser } from "../../services/apicalls";
+import { RegisterUser } from "../../services/apicalls";
 import { validame } from "../../utils/functions";
-import { decodeToken } from "react-jwt";
 import { useDispatch } from "react-redux";
-import { login } from "../../app/slices/userSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,14 @@ export const Register = () => {
       [e.target.name + "Error"]: error,
     }));
   };
-
+  useEffect(() => {
+    toast.dismiss();
+    userError.firstNameError && toast.warn(userError.firstNameError);
+    userError.lastNameError && toast.warn(userError.lastNameError);
+    userError.countryError && toast.warn(userError.countryError);
+    userError.emailError && toast.warn(userError.emailError);
+    userError.passwordError && toast.warn(userError.passwordError);
+  }, [userError]);
   const registerMe = async () => {
     try {
       for (let element in user) {
@@ -50,10 +57,11 @@ export const Register = () => {
         }
       }
       const fetched = await RegisterUser(user);
+      toast.success("User registered successfully");
 
       setTimeout(() => {
         navigate("/login");
-      }, 750);
+      }, 1750);
     } catch (error) {}
   };
 
@@ -61,6 +69,7 @@ export const Register = () => {
     <>
       <div className="registerDesign">
         <div className="titleRegisterDesign">Register</div>
+
         <CInput
           className={`inputDesign ${
             userError.nameError !== "" ? "inputDesignError" : ""
@@ -72,7 +81,7 @@ export const Register = () => {
           onChangeFunction={(e) => inputHandler(e)}
           onBlurFunction={(e) => checkError(e)}
         />
-        <div className="error">{userError.nameError}</div>
+
         <CInput
           className={`inputDesign ${
             userError.lastNameError !== "" ? "inputDesignError" : ""
@@ -84,7 +93,7 @@ export const Register = () => {
           onChangeFunction={(e) => inputHandler(e)}
           onBlurFunction={(e) => checkError(e)}
         />
-        <div className="error">{userError.countryError}</div>
+
         <CInput
           className={`inputDesign ${
             userError.countryError !== "" ? "inputDesignError" : ""
@@ -96,7 +105,7 @@ export const Register = () => {
           onChangeFunction={(e) => inputHandler(e)}
           onBlurFunction={(e) => checkError(e)}
         />
-        <div className="error">{userError.countryError}</div>
+
         <CInput
           className={`inputDesign ${
             userError.emailError !== "" ? "inputDesignError" : ""
@@ -108,7 +117,7 @@ export const Register = () => {
           onChangeFunction={(e) => inputHandler(e)}
           onBlurFunction={(e) => checkError(e)}
         />
-        <div className="error">{userError.emailError}</div>
+
         <CInput
           className={`inputDesign ${
             userError.passwordError !== "" ? "inputDesignError" : ""
@@ -120,11 +129,24 @@ export const Register = () => {
           onChangeFunction={(e) => inputHandler(e)}
           onBlurFunction={(e) => checkError(e)}
         />
-        <div className="error">{userError.passwordError}</div>
+
         <CButton
           className={"cButtonDesign"}
           title={"Register"}
           functionEmit={registerMe}
+        />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition:Bounce
         />
       </div>
     </>
