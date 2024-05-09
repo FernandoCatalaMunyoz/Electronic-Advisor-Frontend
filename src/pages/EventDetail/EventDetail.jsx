@@ -8,18 +8,24 @@ export const EventDetail = () => {
   return (
     <div className="eventDetailDesign">
       <div className="eventInfo">
-        <div className="eventDetailTitle">Información del Evento</div>
+        <div className="eventDetailTitle">Event Info</div>
         <div className="eventDetailContent">
-          <div className="eventDetailName">{rdxDetail?.detail?.name}</div>
-          <div className="eventDetailClub">{rdxDetail?.detail?.club.name}</div>
+          <div className="eventDetailName">
+            Name : {rdxDetail?.detail?.name}
+          </div>
+          <div className="eventDetailClub">
+            Club : {rdxDetail?.detail?.club.name}
+          </div>
           <div className="eventDetailAddress">
-            {rdxDetail?.detail?.club.address}
+            Address : {rdxDetail?.detail?.club.address}
           </div>
           <div className="eventDetailClubLink">
-            {rdxDetail?.detail?.club.link}
+            Link : {rdxDetail?.detail?.club.link}
           </div>
           <div className="eventDetailDate">
-            {rdxDetail?.detail?.day +
+            Date :
+            {" " +
+              rdxDetail?.detail?.day +
               "/" +
               rdxDetail?.detail?.month +
               "/" +
@@ -28,7 +34,7 @@ export const EventDetail = () => {
         </div>
       </div>
       <div className="artistsInfo">
-        <div className="artistTitle">ARTISTAS</div>
+        <div className="artistTitle">Artists</div>
         <div className="eventDetailArtists">
           {rdxDetail?.detail?.artistEvents.map((artist) => (
             <li key={artist.id} className="eventDetailArtist">

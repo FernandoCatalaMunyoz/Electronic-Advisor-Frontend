@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { GetEvents } from "../../services/apicalls";
-import { EventCard } from "../../common/EventCard/EventCard";
+
 import { toDetail } from "../../app/slices/detailslice";
 
 export const Home = () => {
