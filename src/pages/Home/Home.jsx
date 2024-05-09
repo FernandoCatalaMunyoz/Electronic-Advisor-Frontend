@@ -6,6 +6,7 @@ import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { GetEvents } from "../../services/apicalls";
 import { EventCard } from "../../common/EventCard/EventCard";
+import { toDetail } from "../../app/slices/detailslice";
 
 export const Home = () => {
   const rdxUser = useSelector(userData);
@@ -41,13 +42,22 @@ export const Home = () => {
     }
   }, [events]);
 
+  const toDetailEvent = (event) => {
+    dispatch(toDetail({ detail: event }));
+    navigate("/event-detail");
+  };
+
   return (
     <>
       <div className="homeDesign">
         {events.length > 0 ? (
           <div className="eventCards">
             {currentEvents.map((event, index) => (
-              <div key={event.id} className="eventListDesign">
+              <div
+                key={event.id}
+                className="eventListDesign"
+                onClick={() => toDetailEvent(event)}
+              >
                 <div className="eventId">{index + 1}</div>
                 <div className="eventName">{event.name}</div>
                 <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>

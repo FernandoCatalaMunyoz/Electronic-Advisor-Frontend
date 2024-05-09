@@ -7,6 +7,7 @@ import { Users } from "../Users/Users";
 import { Artists } from "../Artists/Artists";
 import { Events } from "../Events/Events";
 import { Clubs } from "../Clubs/Clubs";
+import { EventDetail } from "../EventDetail/EventDetail";
 
 export const Body = () => {
   return (
@@ -20,6 +21,7 @@ export const Body = () => {
       <Route path="/superAdmin/artists" element={<Artists />} />
       <Route path="/superAdmin/events" element={<Events />} />
       <Route path="/superAdmin/clubs" element={<Clubs />} />
+      <Route path="/event-detail" element={<EventDetail />} />
     </Routes>
   );
 };

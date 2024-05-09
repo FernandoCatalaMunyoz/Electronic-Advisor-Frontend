@@ -1,0 +1,11 @@
+.eventDetailDesign {
+  height: 90vh;
+  width: 100%;
+  background-color: yellow;
+}
+
+.eventDetailTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+}
