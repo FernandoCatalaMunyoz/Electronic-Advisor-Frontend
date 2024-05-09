@@ -14,6 +14,8 @@ export const Header = () => {
       </div>
       <div className="navigate">
         <CLink path={"/"} title={"HOME"} />
+        <CLink path={"/clubs"} title={"CLUBS"} />
+
         {rdxUser?.credentials?.token ? (
           <div className="navigator-design">
             <CLink path="/profile" title="MI PERFIL" />
