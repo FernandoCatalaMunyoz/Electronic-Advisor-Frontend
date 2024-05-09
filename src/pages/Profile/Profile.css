@@ -7,6 +7,17 @@
   justify-content: center;
   color: rgb(242, 223, 53);
 }
+.titleProfile {
+  height: 10vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: rgb(0, 0, 0);
+}
 .profileForm {
   display: flex;
   flex-direction: column;
@@ -14,12 +25,14 @@
   justify-content: center;
 }
 .inputDesignProfile {
-  height: 2em;
+  height: 4em;
   width: 20em;
 
   padding-left: 0.5em;
   border: 0.1em solid black;
   border-radius: 0.2em;
   margin: 0.5em;
-  color: black;
+  color: rgb(4, 4, 4);
+  font-weight: bold;
+  font-size: 1em;
 }

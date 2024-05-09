@@ -97,7 +97,7 @@ export const Profile = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <h1>Profile</h1>
+          <div className="titleProfile">Profile</div>
           <div className="profileForm">
             <CInput
               className={"inputDesignProfile"}
