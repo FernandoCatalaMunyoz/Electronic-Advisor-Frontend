@@ -67,13 +67,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: yellow;
+  background-color: transparent;
 }
 .eventListDesign {
   color: rgb(255, 255, 255);
   height: 3em;
   width: 90%;
 
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;

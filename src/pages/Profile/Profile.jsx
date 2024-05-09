@@ -110,6 +110,7 @@ export const Profile = () => {
             />
             <div className="error">{userError.firstNameError}</div>
             <CInput
+              className={"inputDesignProfile"}
               type={"text"}
               name={"lastName"}
               value={user.lastName || ""}
@@ -119,6 +120,7 @@ export const Profile = () => {
             />
             <div className="error">{userError.lastNameError}</div>
             <CInput
+              className={"inputDesignProfile"}
               type={"text"}
               name={"country"}
               value={user.country || ""}
@@ -128,6 +130,7 @@ export const Profile = () => {
             />
             <div className="error">{userError.countryError}</div>
             <CInput
+              className={"inputDesignProfile"}
               type={"text"}
               name={"email"}
               value={user.email || ""}

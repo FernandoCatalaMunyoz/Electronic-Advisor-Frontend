@@ -48,26 +48,24 @@ export const Events = () => {
   const [events, setEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [eventsPerPage] = useState(10);
-  console.log(eventsPerPage, "eventsPerPage");
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     if (events.length === 0) {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
         console.log(fetchEvents.data, "fetchEvents");
-        // const sortedEvents = fetchEvents.data.sort((a, b) =>
-        //   a.name.localeCompare(b.name)
-        // );
+        const sortedEvents = fetchEvents.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
         setEvents(fetchEvents.data);
       };
       bringEvents();
     }
   }, [events]);
-
-  const indexOfLastEvent = currentPage * eventsPerPage;
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(events.length / eventsPerPage); i++) {
@@ -253,7 +251,7 @@ export const Events = () => {
         <div className="titleListEvents">List Events</div>
         <div className="listEvents">
           {currentEvents.map((event) => (
-            <div key={event.id} className="eventListDesign">
+            <div key={event.id} className="eventListDesignHome">
               <div className="eventId">{event.id}</div>
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
