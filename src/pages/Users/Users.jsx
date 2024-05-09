@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./User.css";
+import "./Users.css";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ export const Users = () => {
             <div className="userCountry">{user.country}</div>
             <div className="userEmail">{user.email}</div>
             <div className="deleteUser" onClick={() => deleteUser(user.id)}>
-              Borrar
+              Delete
             </div>
           </div>
         ))}

@@ -97,7 +97,7 @@ export const Profile = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <h1>Mi perfil</h1>
+          <h1>Profile</h1>
           <div className="profileForm">
             <CInput
               className={"inputDesignProfile"}
@@ -143,7 +143,7 @@ export const Profile = () => {
               className={
                 write === "" ? "cButtonGreen cButtonDesign" : "cButtonDesign"
               }
-              title={write === "" ? "Confirmar" : "Editar"}
+              title={write === "" ? "Confirm" : "Edit"}
               functionEmit={write === "" ? editProfile : () => setWrite("")}
             />
           </div>
