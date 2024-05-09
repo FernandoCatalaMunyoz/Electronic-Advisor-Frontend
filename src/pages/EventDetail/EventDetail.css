@@ -1,11 +1,71 @@
 .eventDetailDesign {
   height: 90vh;
   width: 100%;
-  background-color: yellow;
+
+  display: flex;
+  flex-direction: row;
+}
+.eventInfo {
+  color: white;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.378);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.artistsInfo {
+  color: white;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 255, 0.179);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .eventDetailTitle {
   font-size: 2rem;
   font-weight: bold;
   margin: 1rem;
+}
+.artistTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+.eventDetailContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.eventDetailName {
+  margin: 1em;
+}
+
+.eventDetailClub {
+  margin: 1em;
+}
+
+.eventDetailAdress {
+  margin: 1em;
+}
+
+.eventDetailClubLink {
+  margin: 1em;
+}
+
+.eventDetailDate {
+  margin: 1em;
+}
+
+.eventDetailArtist {
+  margin: 1em;
+}
+
+.eventDetailArtist {
+  margin: 1em;
 }
