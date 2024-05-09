@@ -9,11 +9,7 @@ export const UserClubs = () => {
   const navigate = useNavigate();
   const rdxUser = useSelector(userData);
   const [clubs, setClubs] = useState([]);
-  useEffect(() => {
-    if (rdxUser?.credentials?.user?.roleName !== "super_admin") {
-      navigate("/");
-    }
-  }, [rdxUser]);
+
   useEffect(() => {
     if (clubs.length === 0) {
       const bringClubs = async () => {

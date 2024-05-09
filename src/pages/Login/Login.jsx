@@ -54,8 +54,9 @@ export const Login = () => {
   };
   return (
     <div className="loginDesign">
-      <div>INICIO DE SESIÓN</div>
+      <div className="titleLoginDesign">Login</div>
       <CInput
+        className={"cInputDesign"}
         type={"email"}
         name={"email"}
         placeHolder={"Email"}
@@ -63,6 +64,7 @@ export const Login = () => {
         onChangeFunction={inputHandler}
       />
       <CInput
+        className={"cInputDesign"}
         type={"password"}
         name={"password"}
         placeHolder={"Contraseña"}

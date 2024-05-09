@@ -3,10 +3,14 @@ import "./Register.css";
 import { useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
-import { RegisterUser } from "../../services/apicalls";
+import { LoginUser, RegisterUser } from "../../services/apicalls";
 import { validame } from "../../utils/functions";
+import { decodeToken } from "react-jwt";
+import { useDispatch } from "react-redux";
+import { login } from "../../app/slices/userSlice";
 
 export const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -22,6 +26,7 @@ export const Register = () => {
     lastNameError: "",
     countryError: "",
   });
+
   const inputHandler = (e) => {
     setUser((prevState) => ({
       ...prevState,
@@ -45,20 +50,17 @@ export const Register = () => {
         }
       }
       const fetched = await RegisterUser(user);
-      console.log(fetched, "fetched");
 
-      if ((fetched.success = true)) {
-        fetched.message;
-      }
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 750);
     } catch (error) {}
   };
+
   return (
     <>
       <div className="registerDesign">
-        <div>Registro de Usuario</div>
+        <div className="titleRegisterDesign">Register</div>
         <CInput
           className={`inputDesign ${
             userError.nameError !== "" ? "inputDesignError" : ""
