@@ -6,8 +6,8 @@
   background-color: transparent;
 
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  /* justify-content: center; */
+
   color: rgb(242, 223, 53);
 }
 
@@ -42,6 +42,10 @@
 }
 
 .title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 10vh;
   font-size: x-large;
 
   color: rgb(242, 223, 53);

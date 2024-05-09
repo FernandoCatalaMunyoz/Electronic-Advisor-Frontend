@@ -50,12 +50,19 @@ export const Home = () => {
   return (
     <>
       <div className="homeDesign">
+        <div className="titleEventsHome">EVENTS</div>
         {events.length > 0 ? (
           <div className="eventCards">
+            <div className="titleDescription">
+              <div className="titleIdEvent">Nº </div>
+              <div className="titleNameEvent">Name </div>
+              <div className="titleDateEvent">Date</div>
+              <div className="titleClubEvent">Club</div>
+            </div>
             {currentEvents.map((event, index) => (
               <div
                 key={event.id}
-                className="eventListDesign"
+                className="eventListDesignHome"
                 onClick={() => toDetailEvent(event)}
               >
                 <div className="eventId">{index + 1}</div>
