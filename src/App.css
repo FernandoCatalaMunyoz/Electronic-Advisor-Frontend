@@ -9,6 +9,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  caret-color: transparent;
 }
 ::-webkit-scrollbar {
   display: none;

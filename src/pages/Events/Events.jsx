@@ -251,7 +251,7 @@ export const Events = () => {
         <div className="titleListEvents">List Events</div>
         <div className="listEvents">
           {currentEvents.map((event) => (
-            <div key={event.id} className="eventListDesignHome">
+            <div key={event.id} className="eventListDesign">
               <div className="eventId">{event.id}</div>
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
