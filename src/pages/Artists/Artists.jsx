@@ -36,7 +36,7 @@ export const Artists = () => {
       </div>
       <div className="listArtistsDiv">
         {artists.map((artist) => (
-          <div className="artistList">
+          <div key={artist.id} className="artistList">
             <div className="artistName">{artist.name}</div>
             <div className="artistCountry">{artist.country}</div>
             <div className="artistGenre">{artist.genre.name}</div>

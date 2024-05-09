@@ -7,3 +7,12 @@
   justify-content: center;
   color: rgb(242, 223, 53);
 }
+.inputDesignProfile {
+  height: 1em;
+  width: 20em;
+
+  border: 0.1em solid black;
+  border-radius: 0.2em;
+  margin: 0.5em;
+  color: black;
+}

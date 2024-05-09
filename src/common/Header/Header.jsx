@@ -9,7 +9,9 @@ export const Header = () => {
 
   return (
     <div className="header-design">
-      <div className="title"></div>
+      <div className="title">
+        <img src="../../public/img/logot.svg" alt="" />
+      </div>
       <div className="navigate">
         <CLink path={"/"} title={"HOME"} />
         {rdxUser?.credentials?.token ? (

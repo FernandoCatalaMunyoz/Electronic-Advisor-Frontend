@@ -12,10 +12,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  color: red;
 }
+.eventListDesign {
+  width: 5vw;
 
+  color: black;
+  background-color: rgb(175, 86, 86);
+}
 .pagination {
   height: 10px;
   display: flex;
@@ -31,7 +34,7 @@
 }
 
 .page-link {
-  color: white;
+  color: rgb(247, 247, 247);
   margin: 1em;
 }
 .page-link:hover {

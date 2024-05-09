@@ -100,6 +100,7 @@ export const Profile = () => {
           <h1>Mi perfil</h1>
           <div className="profileForm">
             <CInput
+              className={"inputDesignProfile"}
               type={"text"}
               name={"firstName"}
               value={user.firstName || ""}

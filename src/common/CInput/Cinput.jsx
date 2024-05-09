@@ -12,7 +12,7 @@ export const CInput = ({
 }) => {
   return (
     <input
-      className={"inputDesign"}
+      className={className}
       type={type}
       placeholder={placeHolder}
       name={name}

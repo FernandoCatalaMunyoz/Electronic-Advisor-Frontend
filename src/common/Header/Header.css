@@ -55,3 +55,9 @@
   justify-content: space-around;
   align-items: center;
 }
+img {
+  color: yellow;
+
+  height: 10vh;
+  width: 10vw;
+}
