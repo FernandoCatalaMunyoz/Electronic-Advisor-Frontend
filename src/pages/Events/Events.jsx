@@ -131,7 +131,7 @@ export const Events = () => {
         } else {
           toast.warn(fetched.message);
         }
-        setEvent([]);
+        setEvents([]);
       }
     } catch (error) {}
   };
