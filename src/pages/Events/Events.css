@@ -64,6 +64,7 @@
   justify-content: center;
 }
 .listEvents {
+  width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,14 +73,23 @@
 }
 .eventListDesign {
   color: rgb(255, 255, 255);
-  height: 3em;
-  width: 90%;
+  height: 2em;
+  width: 100%;
+  margin: 0.5em;
 
-  background-color: transparent;
+  background-color: rgba(154, 162, 43, 0.667);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+}
+.imgEdit {
+  width: 1.7em;
+  height: 1.7em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .eventName {
   width: 20em;

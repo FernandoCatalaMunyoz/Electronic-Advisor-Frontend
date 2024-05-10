@@ -122,8 +122,10 @@ export const Events = () => {
           throw new Error("Please, fill all the fields");
         }
       }
+
       const fetched = await CreateEvent(event, token);
       console.log(fetched, "fetched");
+      toast.success("Event created successfully");
       setEvent([]);
     } catch (error) {}
   };
@@ -285,9 +287,13 @@ export const Events = () => {
               <div className="eventId">{event.id}</div>
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
-              {/* <div className="eventClub">{event.club}</div> */}
+              <div className="eventClub">{event.club.name}</div>
               <div className="editEvent" onClick={() => startEdit(event)}>
-                Editar
+                <img
+                  className="imgEdit"
+                  src="../public\img\editar.png"
+                  alt=""
+                />
               </div>
               <div
                 className="deleteEvent"
