@@ -1,0 +1,36 @@
+.clubsDesign {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.clubsTitleDesign {
+  height: 10vh;
+  font-size: 3em;
+  font-weight: bold;
+
+  color: rgb(242, 223, 53);
+}
+.clubsListDesign {
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.clubList {
+  color: black;
+  font-weight: bold;
+  background-color: rgba(183, 188, 113, 0.667);
+  margin: 1em;
+  height: 4em;
+  width: 30em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 0.5em;
+
+  border: 0.1em solid rgb(0, 0, 0);
+}

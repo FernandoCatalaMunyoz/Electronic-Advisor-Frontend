@@ -14,6 +14,7 @@ export const UserClubs = () => {
     if (clubs.length === 0) {
       const bringClubs = async () => {
         const fetchClubs = await getClubs();
+        console.log(fetchClubs.data, "fetchClubs.data");
         const sortedClubs = fetchClubs.data.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
@@ -29,6 +30,8 @@ export const UserClubs = () => {
         {clubs.map((club) => (
           <div key={club.id} className="clubList">
             <div className="clubName">{club.name}</div>
+            <div className="clubAddress">{club.address}</div>
+            <div className="clubLink">{club.link}</div>
           </div>
         ))}
       </div>
