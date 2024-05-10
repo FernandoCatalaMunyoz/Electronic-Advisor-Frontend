@@ -5,6 +5,9 @@ import { userData } from "../../app/slices/userSlice";
 import { useEffect, useState } from "react";
 import { CInput } from "../../common/CInput/Cinput";
 import { CButton } from "../../common/CButton/CButton";
+import { validame } from "../../utils/functions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   CreateEvent,
   DeleteEvent,
@@ -22,13 +25,19 @@ export const Events = () => {
       navigate("/");
     }
   }, [rdxUser]);
-  const [write, setWrite] = useState("disabled");
+  const [events, setEvents] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(10);
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const [event, setEvent] = useState({
     name: "",
     month: "",
     day: "",
     year: "",
-    id: "",
+    clubId: "",
   });
   const [editedEvent, setEditedEvent] = useState({
     name: "",
@@ -45,22 +54,31 @@ export const Events = () => {
     yearError: "",
     clubError: "",
   });
-  const [events, setEvents] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage] = useState(10);
-  const indexOfLastEvent = currentPage * eventsPerPage;
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const checkError = (e) => {
+    const error = validame(e.target.name, e.target.value);
 
+    setEventError((prevState) => ({
+      ...prevState,
+      [e.target.name + "Error"]: error,
+    }));
+  };
+  useEffect(() => {
+    toast.dismiss();
+    eventError.nameError && toast.warn(eventError.nameError);
+    eventError.monthError && toast.warn(eventError.monthError);
+    eventError.dayError && toast.warn(eventError.dayError);
+    eventError.yearError && toast.warn(eventError.yearError);
+    eventError.clubError && toast.warn(eventError.clubError);
+  }, [eventError]);
   useEffect(() => {
     if (events.length === 0) {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
-        console.log(fetchEvents.data, "fetchEvents");
+        console.log(fetchEvents, "firstEvents");
         const sortedEvents = fetchEvents.data.sort((a, b) =>
           a.name.localeCompare(b.name)
         );
+        console.log(fetchEvents.data, "fetchEvents.data");
         setEvents(fetchEvents.data);
       };
       bringEvents();
@@ -98,19 +116,21 @@ export const Events = () => {
   const createEvent = async () => {
     try {
       const token = rdxUser?.credentials?.token;
+      console.log(event, "event");
       for (let element in event) {
         if (event[element] === "") {
           throw new Error("Please, fill all the fields");
         }
       }
       const fetched = await CreateEvent(event, token);
-
+      console.log(fetched, "fetched");
       setEvent([]);
     } catch (error) {}
   };
   const deleteEvent = async (id) => {
     try {
       await DeleteEvent(token, id);
+      toast.success("Event deleted successfully");
       setEvents([]);
     } catch (error) {
       console.log(error, "error");
@@ -126,6 +146,7 @@ export const Events = () => {
       }
       startEdit(editedEvent);
       await UpdateEvent(id, token, editedEvent);
+      toast.success("Event updated successfully");
       startEdit("");
       setEvents([]);
     } catch (error) {
@@ -149,12 +170,13 @@ export const Events = () => {
               name={"name"}
               value={event.name || ""}
               onChangeFunction={(e) => inputHandler(e)}
+              onBlurFunction={(e) => checkError(e)}
             />
             <CInput
               className={`inputDesign ${
                 eventError.nameError !== "" ? "inputDesignError" : ""
               }`}
-              placeHolder={"Mes"}
+              placeHolder={"Month"}
               type={"text"}
               name={"month"}
               value={event.month || ""}
@@ -164,7 +186,7 @@ export const Events = () => {
               className={`inputDesign ${
                 eventError.nameError !== "" ? "inputDesignError" : ""
               }`}
-              placeHolder={"Día"}
+              placeHolder={"Day"}
               type={"text"}
               name={"day"}
               value={event.day || ""}
@@ -174,18 +196,27 @@ export const Events = () => {
               className={`inputDesign ${
                 eventError.nameError !== "" ? "inputDesignError" : ""
               }`}
-              placeHolder={"Año"}
+              placeHolder={"Year"}
               type={"text"}
               name={"year"}
               value={event.year || ""}
               onChangeFunction={(e) => inputHandler(e)}
             />
-
+            <CInput
+              className={`inputDesign ${
+                eventError.nameError !== "" ? "inputDesignError" : ""
+              }`}
+              placeHolder={"ClubId"}
+              type={"text"}
+              name={"clubId"}
+              value={event.clubId || ""}
+              onChangeFunction={(e) => inputHandler(e)}
+            />
             <div className="buttonCreate">
               <CButton
                 className={"cButtonDesign"}
                 title={"Crear"}
-                functionEmit={createEvent}
+                functionEmit={() => createEvent()}
               />
             </div>
           </div>
@@ -203,6 +234,7 @@ export const Events = () => {
                 name={"name"}
                 value={editedEvent.name || ""}
                 onChangeFunction={(e) => inputEditedHandler(e)}
+                onBlurFunction={(e) => checkError(e)}
               />
               <CInput
                 className={`inputDesign ${
@@ -234,7 +266,6 @@ export const Events = () => {
                 value={editedEvent.year || ""}
                 onChangeFunction={(e) => inputEditedHandler(e)}
               />
-
               <div className="buttonCreate">
                 <CButton
                   className={"cButtonDesign"}
@@ -246,7 +277,6 @@ export const Events = () => {
           </div>
         </div>
       </div>
-
       <div className="listEventsDesign">
         <div className="titleListEvents">List Events</div>
         <div className="listEvents">
@@ -255,11 +285,10 @@ export const Events = () => {
               <div className="eventId">{event.id}</div>
               <div className="eventName">{event.name}</div>
               <div className="eventDate">{`${event.month}/${event.day}/${event.year}`}</div>
-              <div className="eventClub">{event.club.name}</div>
+              {/* <div className="eventClub">{event.club}</div> */}
               <div className="editEvent" onClick={() => startEdit(event)}>
                 Editar
               </div>
-
               <div
                 className="deleteEvent"
                 onClick={() => deleteEvent(event.id)}
@@ -279,6 +308,19 @@ export const Events = () => {
           </li>
         ))}
       </ul>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </div>
   );
 };
