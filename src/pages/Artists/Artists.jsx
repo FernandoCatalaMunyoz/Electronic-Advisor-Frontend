@@ -30,12 +30,13 @@ export const Artists = () => {
 
   return (
     <div className="artistDesign">
-      <div className="createArtistDiv">
+      {/* <div className="createArtistDiv">
         <div className="titleCreateArtist">
           <h1>Create Artist</h1>
         </div>
         <div className="inputCreateArtist"></div>
-      </div>
+      </div> */}
+      <div className="titleArtists">Artists</div>
       <div className="listArtistsDiv">
         {artists.map((artist) => (
           <div key={artist.id} className="artistList">
