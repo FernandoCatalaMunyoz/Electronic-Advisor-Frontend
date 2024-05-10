@@ -14,7 +14,18 @@ export const Artists = () => {
       navigate("/");
     }
   }, [rdxUser]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [artistsPerPage] = useState(10);
 
+  const indexOfLastArtist = currentPage * artistsPerPage;
+  const indexOfFirstArtist = indexOfLastArtist - artistsPerPage;
+  const currentArtist = artists.slice(indexOfFirstArtist, indexOfLastArtist);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(artists.length / artistsPerPage); i++) {
+    pageNumbers.push(i);
+  }
   useEffect(() => {
     if (artists.length === 0) {
       const bringArtists = async () => {
@@ -38,7 +49,7 @@ export const Artists = () => {
       </div> */}
       <div className="titleArtists">Artists</div>
       <div className="listArtistsDiv">
-        {artists.map((artist) => (
+        {currentArtist.map((artist) => (
           <div key={artist.id} className="artistList">
             <div className="artistName">Name : {artist.name}</div>
             <div className="artistCountry">Country : {artist.country}</div>
@@ -46,6 +57,15 @@ export const Artists = () => {
           </div>
         ))}
       </div>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} href="#" className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

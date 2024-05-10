@@ -94,21 +94,21 @@
 .eventName {
   width: 12.5em;
   display: flex;
-  justify-content: start;
+  justify-content: end;
   align-items: start;
   padding-left: 1em;
 }
 .eventDate {
   width: 12.5em;
   display: flex;
-  justify-content: start;
+  justify-content: end;
   align-items: start;
   padding-left: 1em;
 }
 .eventClub {
   width: 12.5em;
   display: flex;
-  justify-content: start;
+  justify-content: end;
   padding-left: 1em;
 }
 
