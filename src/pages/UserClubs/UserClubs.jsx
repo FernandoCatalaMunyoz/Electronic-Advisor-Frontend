@@ -23,11 +23,22 @@ export const UserClubs = () => {
       bringClubs();
     }
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [clubsPerPage] = useState(10);
+  const indexOfLastClub = currentPage * clubsPerPage;
+  const indexOfFirstClub = indexOfLastClub - clubsPerPage;
+  const currentClubs = clubs.slice(indexOfFirstClub, indexOfLastClub);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(clubs.length / clubsPerPage); i++) {
+    pageNumbers.push(i);
+  }
   return (
     <div className="clubsDesign">
       <div className="clubsTitleDesign">CLUBS</div>
       <div className="clubsListDesign">
-        {clubs.map((club) => (
+        {currentClubs.map((club) => (
           <div key={club.id} className="clubList">
             <div className="clubName">{club.name}</div>
             <div className="clubAddress">{club.address}</div>
@@ -35,6 +46,19 @@ export const UserClubs = () => {
           </div>
         ))}
       </div>
+      <ul className="paginationSa">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-itemSa">
+            <a
+              onClick={() => paginate(number)}
+              href="#"
+              className="page-linkSa"
+            >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

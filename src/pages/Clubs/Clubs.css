@@ -1,21 +1,21 @@
-.clubsDesign {
+.clubsDesignSa {
   height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.clubsTitleDesign {
+.clubsTitleDesignSa {
   height: 10vh;
   font-size: 3em;
   font-weight: bold;
 }
-.clubsListDesign {
-  height: 70vh;
+.clubsListDesignSa {
+  height: 60vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.clubList {
+.clubListSa {
   color: black;
   font-weight: bold;
   background-color: rgba(183, 188, 113, 0.667);
@@ -28,4 +28,26 @@
 
   padding: 0.5em;
   border: 0.1em solid rgb(0, 0, 0);
+}
+.paginationSa {
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.page-itemSa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.page-linkSa {
+  color: rgb(247, 247, 247);
+  margin: 1em;
+}
+.page-link:hover {
+  font-weight: bold;
+  scale: 150%;
 }
