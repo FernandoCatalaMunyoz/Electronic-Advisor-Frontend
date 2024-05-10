@@ -17,6 +17,7 @@ export const validame = (type, value) => {
       if (value.length < 3) {
         return "Please, the lastname must have at least three characters.";
       }
+      return "";
     case "email":
     case "e-mail":
 
