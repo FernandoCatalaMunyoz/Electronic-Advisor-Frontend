@@ -7,8 +7,20 @@
   justify-content: center;
   align-items: center;
 }
+.titleCreateDesign {
+  color: rgb(242, 223, 53);
+  font-size: 2em;
+  font-weight: bold;
+}
+.titleEditDesign {
+  color: rgb(242, 223, 53);
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
 .createEditDesign {
-  height: 30vh;
+  height: 25vh;
   width: 100vw;
   border: 0.1em solid #f1f1f1;
   display: flex;
@@ -17,7 +29,7 @@
   justify-content: center;
 }
 .createEventDesign {
-  height: 30vh;
+  height: 25vh;
   width: 50vw;
   border: 0.1em solid #f1f1f1;
   display: flex;
@@ -26,13 +38,13 @@
   justify-content: center;
 }
 .editEventDesign {
-  height: 30vh;
+  height: 25vh;
   width: 50vw;
   border: 0.1em solid #f1f1f1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .inputDesign {
@@ -74,7 +86,7 @@
 .eventListDesign {
   color: rgb(255, 255, 255);
   height: 2em;
-  width: 100%;
+  width: 70%;
   margin: 0.5em;
 
   background-color: rgba(154, 162, 43, 0.667);
@@ -89,6 +101,15 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: end;
+}
+.imgDelete {
+  width: 1.7em;
+  height: 1.7em;
+  margin-left: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: end;
   justify-content: center;
 }
 .eventName {

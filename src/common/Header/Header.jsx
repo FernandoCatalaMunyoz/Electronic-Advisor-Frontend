@@ -18,7 +18,7 @@ export const Header = () => {
 
         {rdxUser?.credentials?.token ? (
           <div className="navigator-design">
-            <CLink path="/profile" title="MI PERFIL" />
+            <CLink path="/profile" title="PROFILE" />
             {rdxUser.credentials.user.roleName === "super_admin" ? (
               <div className="superAdminNav">
                 <CLink path={"/superAdmin/users"} title={"Users"} />

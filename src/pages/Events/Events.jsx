@@ -52,7 +52,7 @@ export const Events = () => {
     monthError: "",
     dayError: "",
     yearError: "",
-    clubError: "",
+    clubIdError: "",
   });
   const checkError = (e) => {
     const error = validame(e.target.name, e.target.value);
@@ -68,7 +68,7 @@ export const Events = () => {
     eventError.monthError && toast.warn(eventError.monthError);
     eventError.dayError && toast.warn(eventError.dayError);
     eventError.yearError && toast.warn(eventError.yearError);
-    eventError.clubError && toast.warn(eventError.clubError);
+    eventError.clubIdError && toast.warn(eventError.clubIdError);
   }, [eventError]);
   useEffect(() => {
     if (events.length === 0) {
@@ -119,14 +119,20 @@ export const Events = () => {
       console.log(event, "event");
       for (let element in event) {
         if (event[element] === "") {
-          throw new Error("Please, fill all the fields");
+          return toast.warn("Please, fill all the fields");
         }
       }
 
       const fetched = await CreateEvent(event, token);
-      console.log(fetched, "fetched");
-      toast.success("Event created successfully");
-      setEvent([]);
+      if (fetched.success === true) {
+        console.log(fetched, "fetched");
+        if (fetched.success === true) {
+          toast.success("Event created successfully");
+        } else {
+          toast.warn(fetched.message);
+        }
+        setEvent([]);
+      }
     } catch (error) {}
   };
   const deleteEvent = async (id) => {
@@ -161,13 +167,13 @@ export const Events = () => {
     <div className="eventDesign">
       <div className="createEditDesign">
         <div className="createEventDesign">
-          <div className="titleCreateDesign">Crear Evento</div>
+          <div className="titleCreateDesign">Create Event</div>
           <div className="inputsCreateDesign">
             <CInput
               className={`inputDesign ${
                 eventError.nameError !== "" ? "inputDesignError" : ""
               }`}
-              placeHolder={"Nombre del Evento"}
+              placeHolder={"Event name"}
               type={"text"}
               name={"name"}
               value={event.name || ""}
@@ -217,21 +223,21 @@ export const Events = () => {
             <div className="buttonCreate">
               <CButton
                 className={"cButtonDesign"}
-                title={"Crear"}
+                title={"Create"}
                 functionEmit={() => createEvent()}
               />
             </div>
           </div>
         </div>
         <div className="editEventDesign">
-          <div className="createEventDesign">
-            <div className="titleCreateDesign">Editar Evento</div>
+          <div className="editEventDesign">
+            <div className="titleEditDesign">Edit Event</div>
             <div className="inputsCreateDesign">
               <CInput
                 className={`inputDesign ${
                   eventError.nameError !== "" ? "inputDesignError" : ""
                 }`}
-                placeHolder={"Nombre del Evento"}
+                placeHolder={"Event name"}
                 type={"text"}
                 name={"name"}
                 value={editedEvent.name || ""}
@@ -242,7 +248,7 @@ export const Events = () => {
                 className={`inputDesign ${
                   eventError.nameError !== "" ? "inputDesignError" : ""
                 }`}
-                placeHolder={"Mes"}
+                placeHolder={"Month"}
                 type={"text"}
                 name={"month"}
                 value={editedEvent.month || ""}
@@ -252,7 +258,7 @@ export const Events = () => {
                 className={`inputDesign ${
                   eventError.nameError !== "" ? "inputDesignError" : ""
                 }`}
-                placeHolder={"Día"}
+                placeHolder={"Day"}
                 type={"text"}
                 name={"day"}
                 value={editedEvent.day || ""}
@@ -262,7 +268,7 @@ export const Events = () => {
                 className={`inputDesign ${
                   eventError.nameError !== "" ? "inputDesignError" : ""
                 }`}
-                placeHolder={"Año"}
+                placeHolder={"Year"}
                 type={"text"}
                 name={"year"}
                 value={editedEvent.year || ""}
@@ -271,7 +277,7 @@ export const Events = () => {
               <div className="buttonCreate">
                 <CButton
                   className={"cButtonDesign"}
-                  title={"Editar"}
+                  title={"Edit"}
                   functionEmit={() => editEvent(editedEvent.id)}
                 />
               </div>
@@ -299,7 +305,11 @@ export const Events = () => {
                 className="deleteEvent"
                 onClick={() => deleteEvent(event.id)}
               >
-                Borrar
+                <img
+                  className="imgDelete"
+                  src="../public/img/eliminar.png"
+                  alt=""
+                />
               </div>
             </div>
           ))}
