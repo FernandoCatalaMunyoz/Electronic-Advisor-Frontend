@@ -8,6 +8,8 @@
   height: 10vh;
   font-size: 3em;
   font-weight: bold;
+
+  color: rgb(242, 223, 53);
 }
 .clubsListDesignSa {
   height: 60vh;
@@ -21,12 +23,15 @@
   background-color: rgba(183, 188, 113, 0.667);
   margin: 1em;
   height: 4em;
+  width: 30em;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   padding: 0.5em;
+
   border: 0.1em solid rgb(0, 0, 0);
 }
 .paginationSa {
@@ -47,7 +52,7 @@
   color: rgb(247, 247, 247);
   margin: 1em;
 }
-.page-link:hover {
+.page-linkSa:hover {
   font-weight: bold;
   scale: 150%;
 }
