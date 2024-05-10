@@ -10,11 +10,13 @@ import { Clubs } from "../Clubs/Clubs";
 import { EventDetail } from "../EventDetail/EventDetail";
 import { UserClubs } from "../UserClubs/UserClubs";
 import { EventsHome } from "../EventsHome/EventsHome";
+import { Home } from "../Home/Home";
 
 export const Body = () => {
   return (
     <Routes>
       <Route path="*" element={<Navigate to={"/"} replace />} />
+      <Route path="/" element={<Home />} />
       <Route path="/events" element={<EventsHome />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
