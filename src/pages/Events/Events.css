@@ -69,6 +69,11 @@
   margin: 0.5em;
   cursor: pointer;
 }
+.titleListEvents {
+  color: rgb(242, 223, 53);
+  font-size: 2em;
+  font-weight: bold;
+}
 .listEventsDesign {
   height: 60vh;
   display: flex;

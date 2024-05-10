@@ -286,7 +286,7 @@ export const Events = () => {
         </div>
       </div>
       <div className="listEventsDesign">
-        <div className="titleListEvents">List Events</div>
+        <div className="titleListEvents">Events List</div>
         <div className="listEvents">
           {currentEvents.map((event) => (
             <div key={event.id} className="eventListDesign">
