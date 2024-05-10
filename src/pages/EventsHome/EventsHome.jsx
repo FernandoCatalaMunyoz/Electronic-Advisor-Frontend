@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./EventsHome.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { GetEvents } from "../../services/apicalls";
 
 import { toDetail } from "../../app/slices/detailslice";
 
-export const Home = () => {
+export const EventsHome = () => {
   const rdxUser = useSelector(userData);
   const dispatch = useDispatch();
   const token = rdxUser?.credentials?.token;
