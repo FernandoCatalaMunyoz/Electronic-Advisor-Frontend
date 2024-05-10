@@ -51,6 +51,14 @@ export const Users = () => {
 
   return (
     <div className="usersDesign">
+      <div className="titleUsers">Users</div>
+      <div className="titlesUser">
+        <div className="titleName">Name</div>
+        <div className="titleLastName">Last Name</div>
+        <div className="titleCountry">Country</div>
+        <div className="titleEmail">Email</div>
+        <div className="titleDelete">Delete</div>
+      </div>
       <div className="usersListDesign">
         {currentUsers.map((user) => (
           <div key={user.id} className="userDesign">
@@ -59,7 +67,11 @@ export const Users = () => {
             <div className="userCountry">{user.country}</div>
             <div className="userEmail">{user.email}</div>
             <div className="deleteUser" onClick={() => deleteUser(user.id)}>
-              Delete
+              <img
+                className="imgDeleteUser"
+                src="../public/img/eliminar.png"
+                alt=""
+              />
             </div>
           </div>
         ))}

@@ -7,8 +7,58 @@
   align-items: center;
   justify-content: space-around;
 }
+.titlesUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90vw;
+  height: 2em;
+
+  color: rgb(242, 223, 53);
+  font-weight: bold;
+}
+.titleName {
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+
+  width: 21em;
+}
+.titleLastName {
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+
+  width: 20.7em;
+}
+.titleCountry {
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+
+  width: 20.7em;
+}
+.titleEmail {
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+
+  width: 20em;
+}
+.titleDelete {
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  display: flex;
+  justify-content: flex-end;
+
+  width: 20.7em;
+}
 .usersListDesign {
-  color: white;
   width: 90vw;
   height: 100%;
   display: flex;
@@ -16,16 +66,32 @@
   align-items: start;
   justify-content: flex-start;
 }
-
+.titleUsers {
+  color: rgb(242, 223, 53);
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em;
+}
 .userDesign {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   margin: 0.3em;
   width: 100%;
-  border: 0.1em solid white;
-  background-color: rgba(255, 255, 255, 0.705);
+  height: 2em;
+  border: 0.1em solid rgb(0, 0, 0);
+  background-color: rgba(154, 162, 43, 0.897);
   color: black;
   font-weight: bold;
+}
+.imgDeleteUser {
+  width: 1.6em;
+  height: 1.6em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .userFirstName {
   margin-right: 0.5em;
