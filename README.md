@@ -133,8 +133,13 @@ Aqui estn listados todos los clubs con paginación
 
 - Añadir buscador de eventos tanto por país, nombre, club o artista
 - Como SuperAdmin: - Crear, borrar y modificar artista - Crear, borrar y modificar club
+- Como SuperAdmin: añadir artistas a un evento ya creado.
 - Añadir fotos tanto a artistas, eventos y clubs.
 - Compra de entradas de eventos
+
+## Bugs
+
+- Al poblar un evento con artistas mediante faker en el Backend, hace que se repitan algunos artistas en el mismo evento. En la futura funcionalidad de añadir artistas al evento por parte del suepr admin, esto no estara permitido y cuando intentes incluir a un artista qeu ya este en el cartel, saltara un aviso no permitiendolo y advitiendo de la duplicidad.
 
 ## AUTOR
 
