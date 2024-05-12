@@ -120,8 +120,8 @@ EVENTS
 Aqui el super admin podra:
 
 - Ver todos los eventos con paginación
-- Crear un evento
-- Modificar un evento
+- Crear un evento, introduciendo: - Nombre del evento - Mes - Dia - Año - Id del club en el que se organiza el evento
+- Modificar un evento, introduciendo loa campos a modificar: - Nombre del evento - Mes - Dia - Año
 
 CLUBS
 
