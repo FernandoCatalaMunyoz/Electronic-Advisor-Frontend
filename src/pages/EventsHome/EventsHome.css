@@ -117,7 +117,7 @@
   cursor: pointer;
 }
 .pagination {
-  height: 10px;
+  /* height: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,9 +132,11 @@
 
 .page-link {
   color: rgb(247, 247, 247);
-  margin: 1em;
 }
 .page-link:hover {
   font-weight: bold;
   scale: 150%;
+}
+ul {
+  padding-inline-start: 0;
 }

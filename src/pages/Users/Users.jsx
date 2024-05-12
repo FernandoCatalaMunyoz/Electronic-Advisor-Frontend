@@ -26,7 +26,7 @@ export const Users = () => {
       bringUsers();
     }
   }, [users]);
-  const [usersPage, setUsersPage] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(15);
   const indexOfLastUser = currentPage * usersPerPage;
