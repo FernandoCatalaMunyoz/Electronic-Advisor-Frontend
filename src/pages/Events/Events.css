@@ -12,8 +12,7 @@
   font-size: 2em;
   font-weight: bold;
 }
-.eventListDesign {
-}
+
 .titleEditDesign {
   color: rgb(242, 223, 53);
   font-size: 2em;
@@ -133,10 +132,13 @@
   align-items: center;
 }
 .eventClub {
-  width: 15em;
+  width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.eventId {
+  width: 20%;
 }
 .buttonCreate {
   display: flex;

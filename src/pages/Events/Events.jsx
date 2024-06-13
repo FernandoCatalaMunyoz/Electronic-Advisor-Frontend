@@ -75,9 +75,7 @@ export const Events = () => {
       const bringEvents = async () => {
         const fetchEvents = await GetEvents();
         console.log(fetchEvents, "firstEvents");
-        const sortedEvents = fetchEvents.data.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+
         console.log(fetchEvents.data, "fetchEvents.data");
         setEvents(fetchEvents.data);
       };
