@@ -1,4 +1,5 @@
-const root = "http://localhost:4000/api/";
+const root =
+  "https://electronic-advisor-backend-production.up.railway.app/api/";
 
 export const GetArtists = async (token) => {
   const options = {

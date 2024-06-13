@@ -1,4 +1,5 @@
-const root = "http://electronic-advisor-backend-production.up.railway.app/api/";
+const root =
+  "https://electronic-advisor-backend-production.up.railway.app/api/";
 
 export const LoginUser = async (user) => {
   try {
