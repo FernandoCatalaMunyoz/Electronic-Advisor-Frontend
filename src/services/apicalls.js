@@ -1,4 +1,4 @@
-const root = "http://localhost:4000/api/";
+const root = "http://electronic-advisor-backend-production.up.railway.app/api/";
 
 export const LoginUser = async (user) => {
   try {
